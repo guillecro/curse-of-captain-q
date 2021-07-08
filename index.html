@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zaqueo Arts - Lucy'0s The curse of Captain Q</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,18 +23,18 @@
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://metatags.io/">
+  <meta property="og:url" content="https://thecurseofcaptainq.com">
   <meta property="og:title" content="PLAY Lucy's Island - The curse of Captain Q">
   <meta property="og:description" content="Captain Q's crew is at it again! The crew can't stop singing, and you gotta do something about it! Help Captain Q and stop the crew from singing! A tribute to Lucas Arts' The Curse of Monkey Island (1997) made by github.com/guillecro">
   <meta
-  property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+  property="og:image" content="./">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://metatags.io/">
+  <meta property="twitter:url" content="https://thecurseofcaptainq.com">
   <meta property="twitter:title" content="PLAY Lucy's Island - The curse of Captain Q">
   <meta property="twitter:description" content="Captain Q's crew is at it again! The crew can't stop singing, and you gotta do something about it! Help Captain Q and stop the crew from singing! A tribute to Lucas Arts' The Curse of Monkey Island (1997) made by github.com/guillecro">
-  <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+  <meta property="twitter:image" content="https://thecurseofcaptainq.com/sharer.jpg">
     <style>
       @font-face {
           font-family: 'CaslonAntique';
@@ -348,11 +348,9 @@
       </div>
       <div>
         <h1 class="menuTitle splash">The curse of Captain Q</h1>
-<p class="menuSubTitle splash" style="line-height:45px">Captain Q's crew is at it again,
-	<br>Crawmarex, sh00rs1ng and iBamdalito can't stop singing!<br>Help Captain Q and stop the crew from singing!</p>
-<p class="menuSubTitle2 splash" style="line-height:40px">How to play:<br>When promted, select the correct phrase of the song!</p>
-
-
+        <p class="menuSubTitle splash" style="line-height:45px">Captain Q's crew is at it again,
+          <br>Crawmarex, sh00rs1ng and iBamdalito can't stop singing!<br>Help Captain Q and stop the crew from singing!</p>
+        <p class="menuSubTitle2 splash" style="line-height:40px">How to play:<br>When promted, select the correct phrase of the song!</p>
         <a href="#" @click="preloadStartGameAudio" class="menuStartButton splash">Start game</a>
       </div>
     </div>
@@ -709,8 +707,9 @@
           this.isLoading = true
           this.menu.audio = new Audio('menu.mp3')
           this.menu.audio.volume = 0.5;
+          console.info('[Audio] Loading song...');
           this.menu.audio.addEventListener('canplaythrough', (event) => {
-            console.log('I think I can play through the entire audio (splash) without ever having to stop to buffer.');
+            console.info('[Audio] Can safely play. Continue...');
             this.goSplash()
             this.isLoading = false
           }, false);
@@ -757,9 +756,10 @@
           this.phase01.showFrame01 = true
           this.game.audioIntro = new Audio('game-intro.mp3')
           this.game.audioIntro.volume = 0.5;
+          console.info('[Audio] Loading song...');
           this.game.audioIntro.addEventListener('ended', this.preloadStartSong)
-          this.game.audioIntro.addEventListener('canplaythrough', (event) => {
-            console.log('I think I can play through the entire audio (splash) without ever having to stop to buffer.');
+          this.game.audioIntro.addEventListener('canplaythrough', (event) => {         
+            console.info('[Audio] Can safely play. Continue...');
             this.startGame()
             this.isLoading = false
           }, false);
@@ -845,8 +845,9 @@
           this.isLoading = true
           this.game.audioGame = new Audio('game-song.mp3')
           this.game.audioGame.volume = 0.5;
+          console.info('[Audio] Loading song...');
           this.game.audioGame.addEventListener('canplaythrough', (event) => {
-            console.log('I think I can play through the entire audio (startSong) without ever having to stop to buffer.');
+            console.info('[Audio] Can safely play. Continue...');
             this.startSong()
             this.isLoading = false
           }, false);
@@ -1151,8 +1152,8 @@
           this.isLoading = true
           this.credits.audio = new Audio('end-game.mp3')
           this.credits.audio.volume = 0.5;
-          this.credits.audioGame.addEventListener('canplaythrough', (event) => {
-            console.log('I think I can play through the entire audio (startSong) without ever having to stop to buffer.');
+          this.credits.audio.addEventListener('canplaythrough', (event) => {
+            console.log('Heyyyy congrats! You made it to the end! Woo-hoo!!');
             this.showCredits()
             this.isLoading = false
           }, false);
