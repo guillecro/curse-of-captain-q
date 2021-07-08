@@ -126,6 +126,22 @@
         height: 250px;
         width: auto;
       }
+      #splash02{
+        display: flex;
+        position: relative;
+        height: 719px;
+        width: 960px;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        color: #FFF;
+      }
+      .lucyslogo{
+        height: 450px;
+        width: auto;
+      }
       .splash{
         opacity: 0;
         transition: opacity 1s;
@@ -312,16 +328,20 @@
 <body>
   <div id="app">
     <!--<p style="position: absolute; z-index: 10000; right: 0; top: 0; color: #FFF;" @click="printTimecode">{{counterTimer}}</p>-->
+    <p style="position: absolute; z-index: 10000; left: 40px; top: 20px; color: rgb(255, 255, 255); font-size:32px;" v-show="isLoading">Loading...</p>
     <!--<button @click="startSong" style="position:absolute;" >aaa</button>-->
     <!-- <button @click="showCredits" style="position:absolute;" >aaa</button> -->
     <div id="beforeMenu" v-if="preMenu.show">
-      <a href="#" @click="goSplash">Start game</a>
+      <a href="#" @click="preloadSplashAudio">Start game</a>
     </div>
     <div id="splash" v-if="splash.show">
       <img draggable="false" src="zaqueoarts-01.png" alt="" class="zaqarts splash01 splash">
-
+      
       <h1 style="margin: 40px 0 0;" class="splash02 splash">Zaqueo Arts</h1>
       <p style="margin: 0 0;" class="splash03 splash">presents...</p>
+    </div>
+    <div id="splash02" v-if="splash02.show">
+      <img draggable="false" src="lucys-island-logo.png" alt="" class="lucyslogo splash04 splash">
     </div>
     <div id="menu" v-if="menu.show" class="menuBg splash">
       <div style="height:175px;">
@@ -333,7 +353,7 @@
 <p class="menuSubTitle2 splash" style="line-height:40px">How to play:<br>When promted, select the correct phrase of the song!</p>
 
 
-        <a href="#" @click="startGame" class="menuStartButton splash">Start game</a>
+        <a href="#" @click="preloadStartGameAudio" class="menuStartButton splash">Start game</a>
       </div>
     </div>
     <div id="game" class="boat" v-if="game.show">
@@ -471,6 +491,8 @@
         }
         preload(
           "menu.png",
+          "zaqueoarts-01.png",
+          "lucys-island-logo.png",
           "layer02.png",
           "layer03.png",
           "layer04.png",
@@ -483,7 +505,6 @@
           "vandal-b.png",
           "craw-a.png",
           "craw-b.png",
-          "zaqueoarts-01.png",
           "credit01.png",
           "credit02.png",
           "credit03.png",
@@ -497,6 +518,7 @@
     var app = new Vue({
       el: '#app',
       data: {
+        isLoading: false,
         timer: null,
         startTime: Date.now(),
         splash:{
@@ -504,6 +526,9 @@
           showSplash01: false,
           showSplash02: false,
           showSplash03: false
+        },
+        splash02:{
+          show: false
         },
         preMenu: {
           show: false
@@ -680,12 +705,20 @@
         init(){
           this.preMenu.show = true
         },
-        goSplash() {
-          this.preMenu.show = false;
-          this.splash.show = true;
+        preloadSplashAudio(){
+          this.isLoading = true
           this.menu.audio = new Audio('menu.mp3')
           this.menu.audio.volume = 0.5;
+          this.menu.audio.addEventListener('canplaythrough', (event) => {
+            console.log('I think I can play through the entire audio (splash) without ever having to stop to buffer.');
+            this.goSplash()
+            this.isLoading = false
+          }, false);
+        },
+        goSplash() {
           this.menu.audio.play()
+          this.preMenu.show = false;
+          this.splash.show = true;
           Vue.nextTick()
             .then(() => this.showSplash('.splash01','fadeIn'))
             .then(() => this.showSplash('.splash02','fadeIn'))
@@ -694,11 +727,21 @@
             .then(() => this.hideSplash('.splash03','fadeOut'))
             .then(() => this.hideSplash('.splash02','fadeOut'))
             .then(() => this.hideSplash('.splash01','fadeOut'))
-            .then(() => this.goToMenu())
+            .then(() => this.goToLogo())
             
         },
-        goToMenu(){
+        goToLogo(){
           this.splash.show = false;
+          this.splash02.show = true;
+          Vue.nextTick()
+            .then(() => this.showSplash('.splash04','fadeIn'))
+            .then(() => this.delay(6000))
+            .then(() => this.showSplash('.splash04','fadeOut'))
+            .then(() => this.goToMenu())
+
+        },
+        goToMenu(){
+          this.splash02.show = false;
           this.menu.show = true;
           Vue.nextTick()
             .then(() => this.showSplash('.menuBg','fadeIn'))
@@ -707,15 +750,23 @@
             .then(() => this.showSplash('.menuSubTitle2','fadeIn'))
             .then(() => this.showSplash('.menuStartButton','fadeIn'))
         },
-        startGame() {
-          this.startTime = Date.now()
+        preloadStartGameAudio(){
+          this.isLoading = true
           this.menu.show = false
           this.game.show = true
           this.phase01.showFrame01 = true
-          if(this.menu.audio) this.menu.audio.pause();
           this.game.audioIntro = new Audio('game-intro.mp3')
-          this.game.audioIntro.addEventListener('ended', this.startSong)
           this.game.audioIntro.volume = 0.5;
+          this.game.audioIntro.addEventListener('ended', this.preloadStartSong)
+          this.game.audioIntro.addEventListener('canplaythrough', (event) => {
+            console.log('I think I can play through the entire audio (splash) without ever having to stop to buffer.');
+            this.startGame()
+            this.isLoading = false
+          }, false);
+        },
+        startGame() {
+          this.startTime = Date.now()
+          if(this.menu.audio) this.menu.audio.pause();
           this.game.audioIntro.play();
           this.joSays("I got you, you shame of a pirate!",2005,4605)
           this.joSays("Now give me your shinies!",5105,7105)
@@ -790,11 +841,19 @@
         printTimecode() {
           console.log(this.timer)
         },
+        preloadStartSong() {
+          this.isLoading = true
+          this.game.audioGame = new Audio('game-song.mp3')
+          this.game.audioGame.volume = 0.5;
+          this.game.audioGame.addEventListener('canplaythrough', (event) => {
+            console.log('I think I can play through the entire audio (startSong) without ever having to stop to buffer.');
+            this.startSong()
+            this.isLoading = false
+          }, false);
+        },
         startSong() {
           this.startTime = Date.now()
           this.sing()
-          this.game.audioGame = new Audio('game-song.mp3')
-          this.game.audioGame.volume = 0.5;
           this.game.audioGame.play()
           setTimeout(() => {
             this.game.showShoorDancing = true
@@ -1086,7 +1145,17 @@
           this.crawSays("Guess so", 262662, 263630)
           this.shoorSays("Okay, back to work", 263730, 265532)
           this.qSays("Well gee. I feel a little guilty, now", 265732, 268935)
-          setInterval(this.showCredits, 269669)
+          setInterval(this.preloadCredits, 269669)
+        },
+        preloadCredits: function(){
+          this.isLoading = true
+          this.credits.audio = new Audio('end-game.mp3')
+          this.credits.audio.volume = 0.5;
+          this.credits.audioGame.addEventListener('canplaythrough', (event) => {
+            console.log('I think I can play through the entire audio (startSong) without ever having to stop to buffer.');
+            this.showCredits()
+            this.isLoading = false
+          }, false);
         },
         showCredits: function(){
           this.game.show = false
@@ -1095,8 +1164,6 @@
           this.game.showVandal = false
           this.game.showCraw = false
           this.credits.show = true
-          this.credits.audio = new Audio('end-game.mp3')
-          this.credits.audio.volume = 0.5;
           this.credits.audio.play()
           Vue.nextTick()
             .then(() => this.credits.showCredits01 = true)
