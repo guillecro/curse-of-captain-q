@@ -1,0 +1,1102 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Zaqueo Arts - Lucy'0s The curse of Captain Q</title>
+  <meta name="description" content="A simple HTML5 Template for new projects.">
+  <meta name="author" content="SitePoint">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="CaslonAntique.woff2" as="font" type="font/woff2" crossorigin>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+
+    <style>
+      @font-face {
+          font-family: 'CaslonAntique';
+          src: url('CaslonAntique.woff2') format('woff2'),
+              url('CaslonAntique.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+      }
+      html{
+        font-family: 'CaslonAntique';
+        font-weight: normal;
+        font-style: normal;
+        background: black;
+        display: flex;
+        flex-flow: row nowrap;  
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        height:100%;
+        margin: 0;
+        padding: 0;
+        cursor: crosshair;
+      }
+      body{
+        height: 719px;
+        width: 960px;
+        margin: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+        background-color: black;
+        font-size: 26px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #beforeMenu{
+        display: flex;
+        flex-flow: row nowrap;  
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        background: black;
+        color: #FFF;
+        height: 719px;
+        width: 960px;
+      }
+      #menu{
+        display: flex;
+        flex-flow: row nowrap;  
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        background-image: url('./menu.png');
+        height: 719px;
+        width: 960px;
+        text-align: center;
+        flex-direction: column;
+        flex-wrap: nowrap
+      }
+      .boat{
+        display: block;
+        background-image: url('./layer01.png');
+        height: 719px;
+        width: 960px;
+        position:relative;
+      }
+      a{
+        color: rgb(240, 219, 150);
+        text-decoration: none;
+        text-shadow: 2px 0px 3px black, -2px 0px 3px black, 0px -2px 3px black, 0px 2px 3px black;
+      }
+      a:hover{
+        color: rgb(223, 54, 31);
+        cursor: crosshair;
+      }
+      #splash{
+        display: flex;
+        position: relative;
+        height: 719px;
+        width: 960px;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        color: #FFF;
+      }
+      .zaqarts{
+        height: 250px;
+        width: auto;
+      }
+      .splash{
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      .splash.show{
+        opacity: 1;
+        transition: opacity 1s;  
+      }
+      #frame01{
+        position: absolute;
+        z-index: 20;
+      }
+      #phase01{
+        position:relative;
+        height: 100%;
+        width: 100%;
+      }
+      #rope{
+        position: absolute;
+        z-index: 100;
+      }
+      #table{
+        position: absolute;
+        z-index: 10;
+      }
+      #layer04{
+        position:absolute;
+        z-index: 300;
+      }
+      .pirate{
+        max-height: 360px;
+        position: absolute;
+      }
+      .qpos{
+        bottom: 27px;
+        left: 60px;
+        z-index: 30;
+      }
+      .qpos.thinking{
+        transform: scale(-1, 1);
+        animation: thinkingQ .6s infinite;
+        animation-timing-function: steps(1,end);
+      }
+      .shoorpos{
+        transform: scale(-1, 1);
+        bottom: 90px;
+        max-height: 350px;
+        right: 90px;
+        z-index: 8
+      }
+      .shoorpos.dancing {
+        animation: danceShoor 1.165s infinite;
+        animation-timing-function: steps(1,end);
+      }
+      .vandalpos{
+        transform: scale(-1, 1);
+        right: 10px;
+        bottom: 0px;
+        z-index: 20;
+        max-height: 330px;
+      }
+      .vandalpos.dancing {
+        animation: danceVandal 1.100s infinite;
+        animation-timing-function: steps(1,end);
+      }
+      .crawpos{
+        transform: scale(-1, 1);
+        bottom:80px;
+        right: 320px;
+        max-height: 340px;
+      }
+      .crawpos.dancing {
+        animation: danceCraw 1.300s infinite;
+        animation-timing-function: steps(1,end);
+      }
+
+      @keyframes danceCraw {
+        0% {transform: rotate(6deg) scale(-1, 1); bottom: 100px}
+        20% {transform: rotate(-10deg) scale(-1, 1)}
+        40% {transform: rotate(5deg) scale(-1, 1); bottom: 85px}
+        60% {transform: rotate(-4deg) scale(-1, 1);bottom: 75px}
+        80% {transform: rotate(2deg) scale(-1, 1)}
+      }
+      @keyframes danceShoor {
+        0% {transform: rotate(-6deg) scale(-1, 1); bottom: 75px}
+        20% {transform: rotate(8deg) scale(-1, 1)}
+        40% {transform: rotate(-4deg) scale(-1, 1); bottom: 85px}
+        60% {transform: rotate(10deg) scale(-1, 1);bottom: 95px}
+        80% {transform: rotate(-6deg) scale(-1, 1)}
+      }
+      @keyframes danceVandal {
+        0% {transform: rotate(3deg) scale(-1, 1); bottom: 15px}
+        20% {transform: rotate(10deg) scale(-1, 1);}
+        40% {transform: rotate(-5deg) scale(-1, 1); bottom: 5px}
+        60% {transform: rotate(4deg) scale(-1, 1);bottom: 15px}
+        80% {transform: rotate(-2deg) scale(-1, 1)}
+      }
+      @keyframes thinkingQ {
+        0% {bottom: 27px}
+        50% {bottom: 31px}
+      }
+      
+      #game p{
+        position: absolute;
+        text-shadow: 2px 0px 3px black, -2px 0px 3px black, 0px -2px 3px black, 0px 2px 3px black;
+        color:rgb(240, 219, 150);
+        z-index: 1000;
+      }
+      .crawText{
+        color:rgb(169, 245, 98) !important;
+        top: 170px;
+        right: 375px;
+      }
+      .shoorText{
+        color:rgb(186, 112, 255) !important;
+        top: 200px;
+        right: 225px;
+      }
+      .vandalText{
+        color:rgb(119, 178, 255) !important;
+        top: 230px;
+        right: 150px;
+      }
+      .qText{
+        color:rgb(255, 92, 100) !important;
+        top: 280px;
+        left: 120px;
+      }
+      .JoText{
+        color:rgb(112, 226, 255) !important;
+        top: 245px;
+        right: 225px;
+      }
+      #game .options{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 98%;
+        height: 98%;
+        left: 0;
+        padding-bottom: 25px;
+      }
+      #game .options p{
+        display: block;
+        position: relative;
+        margin: 5px 0;
+        width: 100%;
+        padding-left: 20px;
+        bottom: 0;
+        text-align: left !important;
+      }
+      #credits01{
+        background-image: url('./credit01.png');
+      }
+      #credits02{
+        background-image: url('./credit02.png');
+      }
+      #credits03{
+        background-image: url('./credit03.png');
+      }
+      #credits04{
+        background-image: url('./credit04.png');
+      }
+      #credits05{
+        background-image: url('./credit05.png');
+      }
+      #credits06{
+        background-image: url('./credit06.png');
+      }
+      .credits {
+        display: block;
+        position: relative;
+        text-shadow: 2px 0px 3px black, -2px 0px 3px black, 0px -2px 3px black, 0px 2px 3px black;
+        color:rgb(240, 219, 150);
+        z-index: 1000;
+        height: 719px;
+        width: 960px;
+        text-align: center;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="app">
+    <p style="position: absolute; z-index: 10000; right: 0; top: 0; color: #FFF;" @click="printTimecode">{{counterTimer}}</p>
+    <!-- <button @click="startSong" style="position:absolute;" >aaa</button> -->
+    <!-- <button @click="showCredits" style="position:absolute;" >aaa</button> -->
+    <div id="beforeMenu" v-if="preMenu.show">
+      <a href="#" @click="goSplash">Start game</a>
+    </div>
+    <div id="splash" v-if="splash.show">
+      <img src="zaqueoarts-01.png" alt="" class="zaqarts splash01 splash">
+      <h1 style="margin: 40px 0 0;" class="splash02 splash">Zaqueo Arts</h1>
+      <p style="margin: 0 0;" class="splash03 splash">presents...</p>
+    </div>
+    <div id="menu" v-if="menu.show" class="menuBg splash">
+      <div style="height:175px;">
+      </div>
+      <div>
+        <h1 class="menuTitle splash">The curse of Captain Q</h1>
+        <p class="menuSubTitle splash">Save Captain Q with the power of music!</p>
+        <a href="#" @click="startGame" class="menuStartButton splash">Start game</a>
+      </div>
+    </div>
+    <div id="game" class="boat" v-if="game.show">
+      <img src="layer02.png" id="table" alt="">
+      <img src="layer03.png" id="rope" alt="">
+      <p v-show="game.showPoints" style="top: 20px; left: 30px;">Points: {{game.points}}</p>
+      <p v-show="game.showJoSays" class="JoText">{{game.showJoSays}}</p>
+      <p v-show="game.showCrawSays" class="crawText">{{game.showCrawSays}}</p>
+      <p v-show="game.showShoorSays" class="shoorText">{{game.showShoorSays}}</p>
+      <p v-show="game.showVandalSays" class="vandalText">{{game.showVandalSays}}</p>
+      <p v-show="game.showQSays" class="qText">{{game.showQSays}}</p>
+      <img src="q-a.png" class="pirate qpos" :class="{'thinking': game.showQThinking}" v-show="game.showQ && !game.showQSays " alt=""> 
+      <img src="q-b.png" class="pirate qpos" v-show="game.showQ && game.showQSays " alt=""> 
+      <img src="shoor-a.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && !game.showShoorSays " alt=""> 
+      <img src="shoor-b.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && game.showShoorSays " alt=""> 
+      <img src="vandal-a.png"  class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && !game.showVandalSays " alt="">
+      <img src="vandal-b.png" class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && game.showVandalSays " alt=""> 
+      <img src="craw-a.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && !game.showCrawSays " alt=""> 
+      <img src="craw-b.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && game.showCrawSays " alt=""> 
+      <div class="options" v-if="game.showOptionsOne">
+        <p v-for="(option,i) in optionsOne"  :key="`one-${i}`"><a href="#" @click.prevent="saveAnswer('one',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsOne">
+        <p v-for="(option,i) in optionsOne"  :key="`one-${i}`"><a href="#" @click.prevent="saveAnswer('one',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsTwo">
+        <p v-for="(option,i) in optionsTwo"  :key="`two-${i}`"><a href="#" @click.prevent="saveAnswer('two',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsThree">
+        <p v-for="(option,i) in optionsThree"  :key="`three-${i}`"><a href="#" @click.prevent="saveAnswer('three',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsFour">
+        <p v-for="(option,i) in optionsFour"  :key="`four-${i}`"><a href="#" @click.prevent="saveAnswer('four',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsFive">
+        <p v-for="(option,i) in optionsFive"  :key="`five-${i}`"><a href="#" @click.prevent="saveAnswer('five',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsSix">
+        <p v-for="(option,i) in optionsSix"  :key="`six-${i}`"><a href="#" @click.prevent="saveAnswer('six',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsSeven">
+        <p v-for="(option,i) in optionsSeven"  :key="`seven-${i}`"><a href="#" @click.prevent="saveAnswer('seven',i)">{{option}}</a></p>
+      </div>
+      <div class="options" v-if="game.showOptionsEight">
+        <p v-for="(option,i) in optionsEight"  :key="`eight-${i}`"><a href="#" @click.prevent="saveAnswer('eight',i)">{{option}}</a></p>
+      </div>
+      <div id="phase01">
+        <p v-show="phase01.showText01" style="top: 20px; left: 30px;">Some time later in the sea...</p>
+        <img src="frame01.png" id="frame01" v-if="phase01.showFrame01" alt="">
+        <img src="layer04.png" id="layer04" v-if="phase01.showLayer04" alt="">
+      </div>
+    </div>
+    <div v-if="credits.show">
+      <div id="credits01" v-show="credits.showCredits01" class="credits credits-01 splash">
+        <div style="
+        position: absolute;
+        top: 250px;
+        right: 200px;
+        text-align: center;
+    ">
+          <h1 class="credits-01-title splash">Well, you made it!</h1>
+          <p class="credits-01-subtitle splash">Thanks for playing this silly game!</p>
+        </div>
+      </div>
+      <div id="credits02"  v-show="credits.showCredits02" class="credits credits-02 splash">
+        <div style="
+        position: absolute;
+        top: 220px;
+        right: 350px;
+        text-align: center;
+    ">
+          <h1 class="credits-02-title splash">This game was based on</h1>
+          <p class="credits-02-subtitle splash">The curse of Monkey Island, by Lucas Arts (1997)</p>
+        </div>
+      </div>
+      <div id="credits03"  v-show="credits.showCredits03" class="credits credits-03 splash">
+        <div style="
+        position: absolute;
+        top: 250px;
+        right: 200px;
+        text-align: center;
+    ">
+          <h1 class="credits-03-title splash">A very special thanks</h1>
+          <p class="credits-03-subtitle splash">to everyone at Lucy's Guardians ♥</p>
+        </div>
+      </div>
+      <div id="credits04"  v-show="credits.showCredits04" class="credits credits-04 splash">
+        <div style="
+        position: absolute;
+        top: 230px;
+        right: 370px;
+        text-align: center;
+    ">
+          <p class="credits-04-title splash">Thank you for appreciating all the silly stuff I do</p>
+          <p class="credits-04-subtitle splash">You made this pandemic time a lot better for me  ♥</p>
+        </div>
+      </div>
+      <div id="credits05"  v-show="credits.showCredits05" class="credits credits-05 splash">
+        <div style="
+        position: absolute;
+        top: 370px;
+        right: 150px;
+        text-align: center;
+    ">
+          <p class="credits-05-title splash">I hope I made you smile!</p>
+          <p class="credits-05-subtitle splash">That's the best reward I can ask for~</p>
+        </div>
+      </div>
+      <div id="credits06"  v-show="credits.showCredits06" class="credits credits-06 splash">
+        <div style="
+        position: absolute;
+        top: 250px;
+        right: 460px;
+        text-align: center;
+    ">
+          <h2 class="credits-06-title splash">Oh right! Your score!</h2>
+          <p class="credits-06-subtitle splash">You got a total of {{game.points}} pirate points!</p>
+          <a href="#" @click="restartGame" class="credits-06-button splash">Click here to try again!</a>
+        </div>
+      </div>
+    </div>
+    <!--<audio id="menu-song">
+      <source src="menu.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>-->
+  </div>
+  <div class="hidden">
+    <script type="text/javascript">
+        var images = new Array()
+        function preload() {
+          for (i = 0; i < preload.arguments.length; i++) {
+            images[i] = new Image()
+            images[i].src = preload.arguments[i]
+          }
+        }
+        preload(
+          "menu.png",
+          "layer02.png",
+          "layer03.png",
+          "layer04.png",
+          "layer01.png",
+          "q-a.png",
+          "q-b.png",
+          "shoor-a.png",
+          "shoor-b.png",
+          "vandal-a.png",
+          "vandal-b.png",
+          "craw-a.png",
+          "craw-b.png",
+          "zaqueoarts-01.png",
+          "credit01.png",
+          "credit02.png",
+          "credit03.png",
+          "credit04.png",
+          "credit05.png",
+          "credit06.png",
+        )
+    </script>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        timer: null,
+        startTime: Date.now(),
+        splash:{
+          show: false,
+          showSplash01: false,
+          showSplash02: false,
+          showSplash03: false
+        },
+        preMenu: {
+          show: false
+        },
+        menu:{
+          audio: null,
+          show: false
+        },
+        credits: {
+          show: false,
+          showCredits01: false,
+          showCredits02: false,
+          showCredits03: false,
+          showCredits04: false,
+          showCredits05: false,
+          showCredits06: false,
+          audio: null,
+        },
+        game: {
+          points: 10000,
+          intervalId: null,
+          audioIntro: null,
+          audioGame: null,
+          show: false,
+          showPoints: false,
+          showJoSays: null,
+          showQ: false,
+          showCrawSays: null,
+          showQTalking: false,
+          showShoor: false,
+          showShoorTalking: false,
+          showShoorDancing: false,
+          showVandal: false,
+          showVandalTalking: false,
+          showVandalDancing: false,
+          showCraw: false,
+          showCrawTalking: false,
+          showCrawDancing: false,
+          showCrawSays: null,
+          showShoorSays: null,
+          showVandalSays: null,
+          showQSays: null,
+          showQThinking: false,
+          showOptionsOne: false,
+          showOptionsTwo: false,
+          showOptionsThree: false,
+          showOptionsFour: false,
+          showOptionsFive: false,
+          showOptionsSix: false,
+          showOptionsSeven: false,
+          showOptionsEight: false
+        },
+        phase01:{
+          showFrame01: false,
+          showLayer04: false,
+          showText01: false,
+        },
+        correctAnswer: {
+          one: 2,
+          two: 4,
+          three: 2,
+          four: 3,
+          five: 3,
+          six: 1,
+          seven: 4,
+          eight: 1
+        },
+        answerGiven: {
+          one: null,
+          two: null,
+          three: null,
+          four: null,
+          five: null,
+          six: null,
+          seven: null,
+          eight: null
+        },
+        optionsOne: [
+          "We need to catch that pirate now!",
+          "Come on, men! We've got to recover that map!",
+          "Why are we singing?",
+          "Let's get this ship going!"
+        ],
+        optionsTwo: [
+          "All right crew.. enough of this",
+          "Are you guys even listening?",
+          "Oh jeez.. it's gonna be a long day...",
+          "Let's go defeat that evil pirate!"
+        ],
+        optionsThree: [
+          "Please, for the love of god... Stop!",
+          "All right, crew, let's get to work!",
+          "C'mon crew, that pirate is escaping!",
+          "You guys are not even rhyming"
+        ],
+        optionsFour: [
+          "I have no time for this nonsense!",
+          "Please tell me the song is over",
+          "No time for song! We've got to move!",
+          "There is no time! Hurry! To work!"
+        ],
+        optionsFive: [
+          "More sailing, less singing",
+          "Less rhyming, more sailing",
+          "Less singing, more sailing",
+          "Ok.. enough guys.. joke's over.. please?"
+        ],
+        optionsSix: [
+          "I'm getting so sick of you guys and your rhyming",
+          "I think I am about to throw up",
+          "What you guys need? Money? Treasure? Love? I'll give you that, but stop!",
+          "This is the worst than watching a Lucas Arts movie..."
+        ],
+        optionsSeven: [
+          "Enough of this! We really have to go!",
+          "Stop it! I beg you!",
+          "Please, for the love of god... Stop!",
+          "Stop! Stop! Stop!"
+        ],
+        optionsEight: [
+          "We'll surely avoid scurvy if we all eat an orange",
+          "I'll give you my boat if we continue",
+          "Ok.. fine.. you win... I'll sing",
+          "If you stop now I'll give you my mom's phone number, how about that?"
+        ],
+      },
+      mounted() {
+        //this.startGame()
+        //this.game.show = true
+        this.init()
+        setInterval(() => {
+          this.timer = Date.now() - this.startTime}, 100);
+      },
+      methods: {
+        delay: (ms) => new Promise(resolve => setTimeout(() => resolve('ok'), ms)),
+        showSplash (element, animation, prefix = 'animate__') { 
+          // We create a Promise and return it
+          return new Promise((resolve, reject) => {
+            const animationName = `${prefix}${animation}`;
+            const node = document.querySelector(element);
+            node.classList.add(`show`,`${prefix}animated`, animationName);
+            
+            // When the animation ends, we clean the classes and resolve the Promise
+            function handleAnimationEnd(event) {
+              event.stopPropagation();
+              node.classList.remove(`${prefix}animated`, animationName);
+              resolve('Animation ended');
+            }
+            
+            node.addEventListener('animationend', handleAnimationEnd, {once: true});
+          });
+        },
+        hideSplash (element, animation, prefix = 'animate__') { 
+          // We create a Promise and return it
+          return new Promise((resolve, reject) => {
+            const animationName = `${prefix}${animation}`;
+            const node = document.querySelector(element);
+            node.classList.add(`${prefix}animated`, animationName);
+            
+            // When the animation ends, we clean the classes and resolve the Promise
+            function handleAnimationEnd(event) {
+              event.stopPropagation();
+              node.classList.remove('show',`${prefix}animated`, animationName);
+              resolve('Animation ended');
+            }
+            
+            node.addEventListener('animationend', handleAnimationEnd, {once: true});
+          });
+        },
+        init(){
+          this.preMenu.show = true
+        },
+        goSplash() {
+          this.preMenu.show = false;
+          this.splash.show = true;
+          this.menu.audio = new Audio('menu.mp3')
+          this.menu.audio.volume = 0.5;
+          this.menu.audio.play()
+          Vue.nextTick()
+            .then(() => this.showSplash('.splash01','fadeIn'))
+            .then(() => this.showSplash('.splash02','fadeIn'))
+            .then(() => this.showSplash('.splash03','fadeIn'))
+            .then(() => this.delay(3000))
+            .then(() => this.hideSplash('.splash03','fadeOut'))
+            .then(() => this.hideSplash('.splash02','fadeOut'))
+            .then(() => this.hideSplash('.splash01','fadeOut'))
+            .then(() => this.goToMenu())
+            
+        },
+        goToMenu(){
+          this.splash.show = false;
+          this.menu.show = true;
+          Vue.nextTick()
+            .then(() => this.showSplash('.menuBg','fadeIn'))
+            .then(() => this.showSplash('.menuTitle','fadeIn'))
+            .then(() => this.showSplash('.menuSubTitle','fadeIn'))
+            .then(() => this.showSplash('.menuStartButton','fadeIn'))
+        },
+        startGame() {
+          this.startTime = Date.now()
+          this.menu.show = false
+          this.game.show = true
+          this.phase01.showFrame01 = true
+          if(this.menu.audio) this.menu.audio.pause();
+          this.game.audioIntro = new Audio('game-intro.mp3')
+          this.game.audioIntro.addEventListener('ended', this.startSong)
+          this.game.audioIntro.volume = 0.5;
+          this.game.audioIntro.play();
+          this.joSays("I got you, you shame of a pirate!",2005,4605)
+          this.joSays("Now give me your shinies!",5105,7105)
+          this.joSays("AAAAAAAARRRRRRGGGHHHH!!!!",7605,8405)
+          this.shoorSays("Don't worry, Captain Q",14600,16500)
+          this.shoorSays("You are a great pirate!",16750,18000)
+          this.shoorSays("ARGGH!",18250,19300)
+          this.crawSays("Very bad with the sword, but hey!",20220,21950)
+          this.crawSays("You get to survive!",22356,23423)
+          this.crawSays("Don't be sad!",24000,24890)
+          this.crawSays("ARGGGGHHH!!!!",25050,25650)
+          this.vandalSays("Actually, I know a song we can sing",27594,30160)
+          this.vandalSays("Come on guys! Let's kick it!",30450,32266)
+          this.vandalSays("AAAARRRRRRRRRGGGGGGGGGGGGHHHHHHHH!!!!",32533,32866)          
+          setTimeout( () => {
+            this.phase01.showLayer04 = true
+            this.phase01.showText01 = true
+            this.phase01.showFrame01 = false
+            console.log('tick')
+          }, 10000)
+          setTimeout( () => {
+            this.phase01.showLayer04 = false
+            this.phase01.showText01 = false
+            this.game.showQ = true
+            this.game.showShoor = true
+            this.game.showVandal = true
+            this.game.showCraw = true
+            console.log('tock')
+          }, 13900)
+        },
+        decisionTime: function(phase, start, end){
+          setTimeout( () => {
+            this.startDecision(phase)
+            setTimeout( () => this.checkAnswer(phase), end-start)
+          }, start)
+        },
+        startDecision: function(phase){
+          this.game.showPoints = true
+          this.game.intervalId = setInterval( () => {
+            this.game.points -= Math.floor(Math.random() * 5) + 5
+          },80)
+          this.game.showQThinking = true
+          switch(phase){
+            case 'one':
+              this.game.showOptionsOne = true;
+              break;
+            case 'two':
+              this.game.showOptionsTwo = true;
+              break;
+            case 'three':
+              this.game.showOptionsThree = true;
+              break;
+            case 'four':
+              this.game.showOptionsFour = true;
+              break;
+            case 'five':
+              this.game.showOptionsFive = true;
+              break;
+            case 'six':
+              this.game.showOptionsSix = true;
+              break;
+            case 'seven':
+              this.game.showOptionsSeven = true;
+              break;
+            case 'eight':
+              this.game.showOptionsEight = true;
+              break;
+            default: 
+              break;
+          }
+        },
+        printTimecode() {
+          console.log(this.timer)
+        },
+        startSong() {
+          this.startTime = Date.now()
+          this.sing()
+          this.game.audioGame = new Audio('game-song.mp3')
+          this.game.audioGame.volume = 0.5;
+          this.game.audioGame.play()
+          setTimeout(() => {
+            this.game.showShoorDancing = true
+            this.game.showVandalDancing = true
+            this.game.showCrawDancing = true
+          }, 830)
+          this.decisionTime('one',10911,25125)
+          this.decisionTime('two',45812,56390)
+          this.decisionTime('three',77844,88221)
+          this.decisionTime('four',108800,120921)
+          this.decisionTime('five',142709,153253)
+          this.decisionTime('six',174541,184985)
+          this.decisionTime('seven',206606,217184)
+          this.decisionTime('eight',238405,249000)
+          this.game.show = true
+          this.phase01.showLayer04 = false
+          this.phase01.showText01 = false
+          this.game.showQ = true
+          this.game.showShoor = true
+          this.game.showVandal = true
+          this.game.showCraw = true
+          
+        },
+        saveAnswer: function(phase, answer){
+          this.answerGiven[phase] = answer+1
+          clearInterval(this.game.intervalId)
+          setTimeout( () => { this.game.showPoints = false }, 2000)
+          if(this.correctAnswer[phase] == (answer+1)) this.game.points += 1000
+          else this.game.points -= 1000
+          this.game.showQThinking = false;
+          switch(phase){
+            case 'one':
+              this.game.showOptionsOne = false;
+              break;
+            case 'two':
+              this.game.showOptionsTwo = false;
+              break;
+            case 'three':
+              this.game.showOptionsThree = false;
+              break;
+            case 'four':
+              this.game.showOptionsFour = false;
+              break;
+            case 'five':
+              this.game.showOptionsFive = false;
+              break;
+            case 'six':
+              this.game.showOptionsSix = false;
+              break;
+            case 'seven':
+              this.game.showOptionsSeven = false;
+              break;
+            case 'eight':
+              this.game.showOptionsEight = false;
+              break;
+            default: 
+              break;
+          }
+        },
+        checkAnswer: function(phase){
+          clearInterval(this.game.intervalId)
+          setTimeout( () => { this.game.showPoints = false }, 2000)
+          if(this.answerGiven[phase] == null) {
+            this.game.points -= 1700
+          }
+          this.game.showQThinking = false
+          switch(phase){
+            case 'one':
+              this.game.showOptionsOne = false;
+              break;
+            case 'two':
+              this.game.showOptionsTwo = false;
+              break;
+            case 'three':
+              this.game.showOptionsThree = false;
+              break;
+            case 'four':
+              this.game.showOptionsFour = false;
+              break;
+            case 'five':
+              this.game.showOptionsFive = false;
+              break;
+            case 'six':
+              this.game.showOptionsSix = false;
+              break;
+            case 'seven':
+              this.game.showOptionsSeven = false;
+              break;
+            case 'eight':
+              this.game.showOptionsEight = false;
+              break;
+            default: 
+              break;
+          }
+        },
+        joSays: function(text, startTime, endTime){
+          setTimeout(() => {
+            this.game.showJoSays = text
+              setTimeout(() => {
+                this.game.showJoSays = null
+              }, endTime-startTime)
+          },startTime)
+        },
+        crawSays: function(text, startTime, endTime){
+          setTimeout(() => {
+            this.game.showCrawSays = text
+              setTimeout(() => {
+                this.game.showCrawSays = null
+              }, endTime-startTime)
+          },startTime)
+        },
+        shoorSays: function(text, startTime, endTime){
+          setTimeout(() => {
+            this.game.showShoorSays = text
+              setTimeout(() => {
+                this.game.showShoorSays = null
+              }, endTime-startTime)
+          },startTime)
+        },
+        vandalSays: function(text, startTime, endTime){
+          setTimeout(() => {
+            this.game.showVandalSays = text
+              setTimeout(() => {
+                this.game.showVandalSays = null
+              }, endTime-startTime)
+          },startTime)
+        },
+        qSays: function(text, startTime, endTime){
+          setTimeout(() => {
+            this.game.showQSays = text
+              setTimeout(() => {
+                this.game.showQSays = null
+              }, endTime-startTime)
+          },startTime)
+        },
+        sing(){
+          this.crawSays("We're a band of vicious pirates!",2995,4264)
+          this.shoorSays("A sailin´ out to sea.",4264,5465)
+          this.vandalSays("When you hear our gentle singing...",5465,6765)
+          this.crawSays("You'll be sure to turn and flee!",6765,8264)
+          this.qSays("Oh, this is just ridiculous.",8328,10727)
+          this.qSays("Come on, men! We've got to recover that map!",27127,29997)
+          this.vandalSays("That pirate will be done for, when he falls into our trap!",30680,33333)
+          this.vandalSays("We're a club of tuneful rovers!",35402,36400)
+          this.crawSays("We can sing in every clef!",36800,37900)
+          this.shoorSays("We can even hit the high notes!",38000,39150)
+          this.crawSays("It's just too bad we're tone deaf!",39100,40500)
+          this.vandalSays("A pirate I was meant to be!",40570,43100)
+          this.shoorSays("A pirate I was meant to be!",40570,43100)
+          this.crawSays("A pirate I was meant to be!",40570,43100)
+          this.vandalSays("Trim the sails and roam the sea!",43210,45846)
+          this.shoorSays("Trim the sails and roam the sea!",43210,45846)
+          this.crawSays("Trim the sails and roam the sea!",43210,45846)
+
+
+          this.qSays("Let's go defeat that evil pirate!", 59600,62062)
+          this.shoorSays("We know he's sure to lose, ´cause we know just where to fire at!", 62529, 65132)
+          this.shoorSays("We're thieving balladeers", 67367, 68569)
+          this.crawSays("A gang of cutthroat mugs", 68630, 69937)
+          this.vandalSays("To fight us off ye don't need guns!", 69900, 71338)
+          this.shoorSays("Just really good ear plugs!", 71300, 72339)
+
+          this.vandalSays("A pirate I was meant to be!",72572,75000)
+          this.shoorSays("A pirate I was meant to be!",72572,75000)
+          this.crawSays("A pirate I was meant to be!",72572,75000)
+          this.vandalSays("Trim the sails and roam the sea!",75100,77678)
+          this.shoorSays("Trim the sails and roam the sea!",75100,77678)
+          this.crawSays("Trim the sails and roam the sea!",75100,77678)
+
+          this.qSays("All right, crew, let's get to work!", 91350, 93527)
+          this.crawSays("Our vocation is a thing we love, a thing we'd never shirk", 94661, 97631)
+          this.crawSays("We'll fight you in the harbor", 99800, 101168)
+          this.vandalSays("We'll battle you on land", 101168, 102260)
+          this.shoorSays("But when you meet singing pirates...", 102260, 103530)
+          this.qSays("They'll be more than you can stand", 103550, 105030)
+
+          this.vandalSays("Ooooh! That was a good one!", 105005, 107140)
+          this.qSays("No, it wasn't", 107441, 108875)
+
+          this.qSays("No time for song! We've got to move!", 124091, 127060)
+          this.vandalSays("The battle will be long, but our courage we will prove!", 127527, 130364)
+          this.vandalSays("We're a pack a´ scurvy sea dogs", 132232, 133700)
+          this.crawSays("Have we pity? Not a dram!", 133750, 134900)
+          this.shoorSays("We all eat roasted garlic...", 134968, 136069)
+          this.crawSays("...then sing from the diaphragm!", 136103, 137400)
+
+          this.vandalSays("A pirate I was meant to be!",137437,140000)
+          this.shoorSays("A pirate I was meant to be!",137437,140000)
+          this.crawSays("A pirate I was meant to be!",137437,140000)
+          this.vandalSays("Trim the sails and roam the sea!",140140,142700)
+          this.shoorSays("Trim the sails and roam the sea!",140140,142700)
+          this.crawSays("Trim the sails and roam the sea!",140140,142700)
+
+          this.qSays("Less singing, more sailing", 155950, 158425)
+          this.shoorSays("When we defeat our wicked foe, his ship he will be bailing!", 159259, 162590)
+          this.vandalSays("If ye try ta fight us...", 164430, 165500)
+          this.crawSays("...you will get a nasty whackin´!", 165510, 166700)
+          this.shoorSays("If ya disrespect our singing´...", 166700, 167901)
+          this.vandalSays("...we will feed ya to a kraken!", 167900, 169250)
+
+          this.vandalSays("A pirate I was meant to be!",169300,171900)
+          this.shoorSays("A pirate I was meant to be!",169300,171900)
+          this.crawSays("A pirate I was meant to be!",169300,171900)
+          this.vandalSays("Trim the sails and roam the sea!",171910,174500)
+          this.shoorSays("Trim the sails and roam the sea!",171910,174500)
+          this.crawSays("Trim the sails and roam the sea!",171910,174500)
+
+
+          this.qSays("I´m getting so sick of you guys and your rhyming", 187487 , 190820)
+          this.crawSays("We´re ready to set sail, through the cannons need a priming", 191190, 194327)
+          this.shoorSays("We're troublesome corsairs!", 196296, 197380)
+          this.vandalSays("And we've come to steal your treasures!", 197390, 198670)
+          this.crawSays("We would shoot you on the downbeat...", 198680, 199900)
+          this.shoorSays("...but we have to rest five measures", 199900, 201050)
+
+          this.vandalSays("A pirate I was meant to be!",201100,203700)
+          this.shoorSays("A pirate I was meant to be!",201100,203700)
+          this.crawSays("A pirate I was meant to be!",201100,203700)
+          this.vandalSays("Trim the sails and roam the sea!",203800,206500)
+          this.shoorSays("Trim the sails and roam the sea!",203800,206500)
+          this.crawSays("Trim the sails and roam the sea!",203800,206500)
+
+          this.qSays("Stop! Stop! Stop!", 219300, 222389)
+          this.vandalSays("The brass is what we'll polish and the deck is what we'll mop", 223190, 225792)
+          this.qSays("You say you're nasty pirates...", 228150, 229196)
+          this.qSays("...scheming, thieving, bad bushwhackers?", 229200, 230690)
+          this.qSays("From what I've seen I tell you...", 230720, 231600)
+          this.qSays("...you're not pirates! You're just slackers!", 231620, 233500)
+
+          this.vandalSays("A pirate I was meant to be!",233000,235635)
+          this.shoorSays("A pirate I was meant to be!",233000,235635)
+          this.crawSays("A pirate I was meant to be!",233000,235635)
+          this.vandalSays("Trim the sails and roam the sea!",235700,238230)
+          this.shoorSays("Trim the sails and roam the sea!",235700,238230)
+          this.crawSays("Trim the sails and roam the sea!",235700,238230)
+          setInterval(() => {
+            this.game.showShoorDancing = false
+            this.game.showVandalDancing = false
+            this.game.showCrawDancing = false
+          },255440)
+          this.qSays("We'll surely avoid scurvy if we all eat an orange", 252052, 255422)
+          this.crawSays("And...!", 255440, 256000)
+          this.crawSays("...um...", 256350, 257150)
+          this.vandalSays("Well...", 257130, 257890)
+          this.shoorSays("...err...", 257900, 258890)
+          this.vandalSays("Door hinge?", 258890, 259890)
+          this.shoorSays("No, no...", 259900, 261200)
+          this.vandalSays("Guess the song's over, then", 261220, 262629)
+          this.crawSays("Guess so", 262662, 263630)
+          this.shoorSays("Okay, back to work", 263730, 265532)
+          this.qSays("Well gee. I feel a little guilty, now", 265732, 268935)
+          setInterval(this.showCredits, 269669)
+        },
+        showCredits: function(){
+          this.game.show = false
+          this.game.showQ = false
+          this.game.showShoor = false
+          this.game.showVandal = false
+          this.game.showCraw = false
+          this.credits.show = true
+          this.credits.audio = new Audio('end-game.mp3')
+          this.credits.audio.volume = 0.5;
+          this.credits.audio.play()
+          Vue.nextTick()
+            .then(() => this.credits.showCredits01 = true)
+            .then(() => this.showSplash('.credits-01','fadeIn'))
+            .then(() => this.showSplash('.credits-01-title','fadeIn'))
+            .then(() => this.showSplash('.credits-01-subtitle','fadeIn'))
+            .then(() => this.delay(3500))
+            .then(() => this.hideSplash('.credits-01-title','fadeOut'))
+            .then(() => this.hideSplash('.credits-01-subtitle','fadeOut'))
+            .then(() => this.hideSplash('.credits-01','fadeOut'))
+            .then(() => this.credits.showCredits01 = false)
+            .then(() => this.credits.showCredits02 = true)
+            .then(() => this.showSplash('.credits-02','fadeIn'))
+            .then(() => this.showSplash('.credits-02-title','fadeIn'))
+            .then(() => this.showSplash('.credits-02-subtitle','fadeIn'))
+            .then(() => this.delay(3500))
+            .then(() => this.hideSplash('.credits-02-title','fadeOut'))
+            .then(() => this.hideSplash('.credits-02-subtitle','fadeOut'))
+            .then(() => this.hideSplash('.credits-02','fadeOut'))
+            .then(() => this.credits.showCredits02 = false)
+            .then(() => this.credits.showCredits03 = true)
+            .then(() => this.showSplash('.credits-03','fadeIn'))
+            .then(() => this.showSplash('.credits-03-title','fadeIn'))
+            .then(() => this.showSplash('.credits-03-subtitle','fadeIn'))
+            .then(() => this.delay(3500))
+            .then(() => this.hideSplash('.credits-03-title','fadeOut'))
+            .then(() => this.hideSplash('.credits-03-subtitle','fadeOut'))
+            .then(() => this.hideSplash('.credits-03','fadeOut'))
+            .then(() => this.credits.showCredits03 = false)
+            .then(() => this.credits.showCredits04 = true)
+            .then(() => this.showSplash('.credits-04','fadeIn'))
+            .then(() => this.showSplash('.credits-04-title','fadeIn'))
+            .then(() => this.showSplash('.credits-04-subtitle','fadeIn'))
+            .then(() => this.delay(3500))
+            .then(() => this.hideSplash('.credits-04-title','fadeOut'))
+            .then(() => this.hideSplash('.credits-04-subtitle','fadeOut'))
+            .then(() => this.hideSplash('.credits-04','fadeOut'))
+            .then(() => this.credits.showCredits04 = false)
+            .then(() => this.credits.showCredits05 = true)
+            .then(() => this.showSplash('.credits-05','fadeIn'))
+            .then(() => this.showSplash('.credits-05-title','fadeIn'))
+            .then(() => this.showSplash('.credits-05-subtitle','fadeIn'))
+            .then(() => this.delay(3500))
+            .then(() => this.hideSplash('.credits-05-title','fadeOut'))
+            .then(() => this.hideSplash('.credits-05-subtitle','fadeOut'))
+            .then(() => this.hideSplash('.credits-05','fadeOut'))
+            .then(() => this.credits.showCredits05 = false)
+            .then(() => this.credits.showCredits06 = true)
+            .then(() => this.showSplash('.credits-06','fadeIn'))
+            .then(() => this.showSplash('.credits-06-title','fadeIn'))
+            .then(() => this.showSplash('.credits-06-subtitle','fadeIn'))
+            .then(() => this.showSplash('.credits-06-button','fadeIn'))
+        },
+        restartGame(){
+          this.credits.showCredits06 = false
+          this.credits.show = false
+          this.credits.audio.pause()
+          Vue.nextTick().then( () => this.goSplash() )
+        }
+      },
+      computed: {
+        counterTimer: function(){
+          return (this.timer / 1000).toFixed(3);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
