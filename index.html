@@ -295,14 +295,15 @@
 
 <body>
   <div id="app">
-    <p style="position: absolute; z-index: 10000; right: 0; top: 0; color: #FFF;" @click="printTimecode">{{counterTimer}}</p>
-    <!-- <button @click="startSong" style="position:absolute;" >aaa</button> -->
+    <!--<p style="position: absolute; z-index: 10000; right: 0; top: 0; color: #FFF;" @click="printTimecode">{{counterTimer}}</p>-->
+    <!--<button @click="startSong" style="position:absolute;" >aaa</button>-->
     <!-- <button @click="showCredits" style="position:absolute;" >aaa</button> -->
     <div id="beforeMenu" v-if="preMenu.show">
       <a href="#" @click="goSplash">Start game</a>
     </div>
     <div id="splash" v-if="splash.show">
-      <img src="zaqueoarts-01.png" alt="" class="zaqarts splash01 splash">
+      <img draggable="false" src="zaqueoarts-01.png" alt="" class="zaqarts splash01 splash">
+
       <h1 style="margin: 40px 0 0;" class="splash02 splash">Zaqueo Arts</h1>
       <p style="margin: 0 0;" class="splash03 splash">presents...</p>
     </div>
@@ -311,27 +312,35 @@
       </div>
       <div>
         <h1 class="menuTitle splash">The curse of Captain Q</h1>
-        <p class="menuSubTitle splash">Save Captain Q with the power of music!</p>
+<p class="menuSubTitle splash" style="line-height:45px">Captain Q's crew is at it again,
+	<br>Crawmarex, sh00rs1ng and iBamdalito can't stop singing!<br>Help Captain Q and stop the crew from singing!</p>
+<p class="menuSubTitle2 splash" style="line-height:40px">How to play:<br>When promted, select the correct phrase of the song!</p>
+
+
         <a href="#" @click="startGame" class="menuStartButton splash">Start game</a>
       </div>
     </div>
     <div id="game" class="boat" v-if="game.show">
-      <img src="layer02.png" id="table" alt="">
-      <img src="layer03.png" id="rope" alt="">
+      <img draggable="false" src="layer02.png" id="table" alt="">
+      <img draggable="false" src="layer03.png" id="rope" alt="">
       <p v-show="game.showPoints" style="top: 20px; left: 30px;">Points: {{game.points}}</p>
+      <p v-show="game.showCorrect" style="top: 56px; left: 30px; color: rgb(169, 245, 98)">✔ Well done!</p>
+      <p v-show="game.showWrong" style="top: 56px; left: 30px; color: rgb(255, 92, 100)">✘ Woops...</p>
+
+
       <p v-show="game.showJoSays" class="JoText">{{game.showJoSays}}</p>
       <p v-show="game.showCrawSays" class="crawText">{{game.showCrawSays}}</p>
       <p v-show="game.showShoorSays" class="shoorText">{{game.showShoorSays}}</p>
       <p v-show="game.showVandalSays" class="vandalText">{{game.showVandalSays}}</p>
       <p v-show="game.showQSays" class="qText">{{game.showQSays}}</p>
-      <img src="q-a.png" class="pirate qpos" :class="{'thinking': game.showQThinking}" v-show="game.showQ && !game.showQSays " alt=""> 
-      <img src="q-b.png" class="pirate qpos" v-show="game.showQ && game.showQSays " alt=""> 
-      <img src="shoor-a.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && !game.showShoorSays " alt=""> 
-      <img src="shoor-b.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && game.showShoorSays " alt=""> 
-      <img src="vandal-a.png"  class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && !game.showVandalSays " alt="">
-      <img src="vandal-b.png" class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && game.showVandalSays " alt=""> 
-      <img src="craw-a.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && !game.showCrawSays " alt=""> 
-      <img src="craw-b.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && game.showCrawSays " alt=""> 
+      <img draggable="false" src="q-a.png" class="pirate qpos" :class="{'thinking': game.showQThinking}" v-show="game.showQ && !game.showQSays " alt=""> 
+      <img draggable="false" src="q-b.png" class="pirate qpos" v-show="game.showQ && game.showQSays " alt=""> 
+      <img draggable="false" src="shoor-a.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && !game.showShoorSays " alt=""> 
+      <img draggable="false" src="shoor-b.png" class="pirate shoorpos" :class="{'dancing': game.showShoorDancing}" v-show="game.showShoor && game.showShoorSays " alt=""> 
+      <img draggable="false" src="vandal-a.png"  class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && !game.showVandalSays " alt="">
+      <img draggable="false" src="vandal-b.png" class="pirate vandalpos" :class="{'dancing': game.showVandalDancing}" v-show="game.showVandal && game.showVandalSays " alt=""> 
+      <img draggable="false" src="craw-a.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && !game.showCrawSays " alt=""> 
+      <img draggable="false" src="craw-b.png" class="pirate crawpos" :class="{'dancing': game.showCrawDancing}" v-show="game.showCraw && game.showCrawSays " alt=""> 
       <div class="options" v-if="game.showOptionsOne">
         <p v-for="(option,i) in optionsOne"  :key="`one-${i}`"><a href="#" @click.prevent="saveAnswer('one',i)">{{option}}</a></p>
       </div>
@@ -361,8 +370,8 @@
       </div>
       <div id="phase01">
         <p v-show="phase01.showText01" style="top: 20px; left: 30px;">Some time later in the sea...</p>
-        <img src="frame01.png" id="frame01" v-if="phase01.showFrame01" alt="">
-        <img src="layer04.png" id="layer04" v-if="phase01.showLayer04" alt="">
+        <img draggable="false" src="frame01.png" id="frame01" v-if="phase01.showFrame01" alt="">
+        <img draggable="false" src="layer04.png" id="layer04" v-if="phase01.showLayer04" alt="">
       </div>
     </div>
     <div v-if="credits.show">
@@ -503,11 +512,15 @@
         },
         game: {
           points: 10000,
+          counter: 0,
+          counterIntervalId: null,
           intervalId: null,
           audioIntro: null,
           audioGame: null,
           show: false,
           showPoints: false,
+          showCorrect: false,
+          showWrong: false,
           showJoSays: null,
           showQ: false,
           showCrawSays: null,
@@ -679,6 +692,7 @@
             .then(() => this.showSplash('.menuBg','fadeIn'))
             .then(() => this.showSplash('.menuTitle','fadeIn'))
             .then(() => this.showSplash('.menuSubTitle','fadeIn'))
+            .then(() => this.showSplash('.menuSubTitle2','fadeIn'))
             .then(() => this.showSplash('.menuStartButton','fadeIn'))
         },
         startGame() {
@@ -730,7 +744,7 @@
           this.game.showPoints = true
           this.game.intervalId = setInterval( () => {
             this.game.points -= Math.floor(Math.random() * 5) + 5
-          },80)
+          },45)
           this.game.showQThinking = true
           switch(phase){
             case 'one':
@@ -792,12 +806,47 @@
           this.game.showCraw = true
           
         },
+        addPoints(){
+          this.game.showCorrect = true
+          this.counterIntervalId = setInterval(() => {
+            let ran = Math.floor(Math.random() * 10) + 50
+            this.game.counter += ran
+            this.game.points += ran
+            if(this.game.counter > 2500){
+              setTimeout( () => {
+                this.game.counter = 0
+                this.game.showPoints = false
+                this.game.showCorrect = false
+              }, 2000)
+              clearInterval(this.counterIntervalId)
+              }
+            }, 35);
+        },
+        removePoints(){
+          this.game.showWrong = true
+          this.counterIntervalId = setInterval(() => {
+            let ran = Math.floor(Math.random() * 10) + 25
+            this.game.counter += ran
+            this.game.points -= ran
+            if(this.game.counter > 1000){
+              setTimeout( () => {
+                this.game.counter = 0
+                this.game.showPoints = false
+                this.game.showWrong = false
+              }, 2000)
+              clearInterval(this.counterIntervalId)
+              }
+            }, 35);
+        },
         saveAnswer: function(phase, answer){
           this.answerGiven[phase] = answer+1
           clearInterval(this.game.intervalId)
-          setTimeout( () => { this.game.showPoints = false }, 2000)
-          if(this.correctAnswer[phase] == (answer+1)) this.game.points += 1000
-          else this.game.points -= 1000
+          if(this.correctAnswer[phase] == (answer+1)) {
+            this.addPoints()
+          }
+          else {
+            this.removePoints()
+          }
           this.game.showQThinking = false;
           switch(phase){
             case 'one':
@@ -830,10 +879,15 @@
         },
         checkAnswer: function(phase){
           clearInterval(this.game.intervalId)
-          setTimeout( () => { this.game.showPoints = false }, 2000)
           if(this.answerGiven[phase] == null) {
-            this.game.points -= 1700
+            this.game.showWrong = true
           }
+          
+          setTimeout( () => { 
+            this.game.showPoints = false
+            this.game.showCorrect = false
+            this.game.showWrong = false
+             }, 2000)
           this.game.showQThinking = false
           switch(phase){
             case 'one':
