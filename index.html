@@ -126,6 +126,22 @@
         height: 250px;
         width: auto;
       }
+      #splash02{
+        display: flex;
+        position: relative;
+        height: 719px;
+        width: 960px;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        color: #FFF;
+      }
+      .lucyslogo{
+        height: 450px;
+        width: auto;
+      }
       .splash{
         opacity: 0;
         transition: opacity 1s;
@@ -319,9 +335,12 @@
     </div>
     <div id="splash" v-if="splash.show">
       <img draggable="false" src="zaqueoarts-01.png" alt="" class="zaqarts splash01 splash">
-
+      
       <h1 style="margin: 40px 0 0;" class="splash02 splash">Zaqueo Arts</h1>
       <p style="margin: 0 0;" class="splash03 splash">presents...</p>
+    </div>
+    <div id="splash02" v-if="splash02.show">
+      <img draggable="false" src="lucys-island-logo.png" alt="" class="lucyslogo splash04 splash">
     </div>
     <div id="menu" v-if="menu.show" class="menuBg splash">
       <div style="height:175px;">
@@ -484,6 +503,7 @@
           "craw-a.png",
           "craw-b.png",
           "zaqueoarts-01.png",
+          "lucys-island-logo.png",
           "credit01.png",
           "credit02.png",
           "credit03.png",
@@ -504,6 +524,9 @@
           showSplash01: false,
           showSplash02: false,
           showSplash03: false
+        },
+        splash02:{
+          show: false
         },
         preMenu: {
           show: false
@@ -694,11 +717,21 @@
             .then(() => this.hideSplash('.splash03','fadeOut'))
             .then(() => this.hideSplash('.splash02','fadeOut'))
             .then(() => this.hideSplash('.splash01','fadeOut'))
-            .then(() => this.goToMenu())
+            .then(() => this.goToLogo())
             
         },
-        goToMenu(){
+        goToLogo(){
           this.splash.show = false;
+          this.splash02.show = true;
+          Vue.nextTick()
+            .then(() => this.showSplash('.splash04','fadeIn'))
+            .then(() => this.delay(6000))
+            .then(() => this.showSplash('.splash04','fadeOut'))
+            .then(() => this.goToMenu())
+
+        },
+        goToMenu(){
+          this.splash02.show = false;
           this.menu.show = true;
           Vue.nextTick()
             .then(() => this.showSplash('.menuBg','fadeIn'))
