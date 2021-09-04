@@ -1,4 +1,4 @@
-# the-curse-of-captain-q
+# The curse of captain Q
 
 > Silly VueJS game I made copying a musical scene from The Curse of Monkey Island! Call it a tribute!
 
